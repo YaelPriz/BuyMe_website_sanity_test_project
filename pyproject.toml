@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "buyme-website-sanity-test-project"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "buyme_website_sanity_test_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+selenium = "4.10.0"
+selenium-page-factory = "^2.6"
+allure-pytest = "^2.13.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
