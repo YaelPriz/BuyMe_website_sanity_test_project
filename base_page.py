@@ -13,19 +13,21 @@ import json
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        json_file = open('config.json', 'r')
-        data = json.load(json_file)
-        browser = data['browserType']
-        if browser == 'chrome':
-            self.driver = webdriver.Chrome(service=Service("C:\Yael\Python\chromedriver-win64\chromedriver.exe"))
-        elif browser == 'firefox':
-            self.driver = webdriver.Firefox(
-                service=Service('C:\Yael\Python\geckodriver-v0.33.0-win-aarch64\geckodriver.exe'))
-        else:
-            raise ValueError("Unsupported browser type")
+        self.wait = WebDriverWait(self.driver, 10)
 
-        self.url = data['websiteURL']
-        # self.driver.get(url)
+    # Load configuration from config.json
+    json_file = open('config.json', 'r')
+    data = json.load(json_file)
+    browser = data['browserType']
+    url = data['websiteURL']
+    # Check browser type and create driver instance
+    if browser == 'chrome':
+        driver = webdriver.Chrome(service=Service("C:\Yael\Python\chromedriver-win64\chromedriver.exe"))
+    elif browser == 'firefox':
+        driver = webdriver.Firefox(
+            service=Service('C:\Yael\Python\geckodriver-v0.33.0-win-aarch64\geckodriver.exe'))
+    else:
+        raise ValueError("Unsupported browser type")
 
     def element_not_found_screenshot(self):
         timestamp = int(time.time())
@@ -55,7 +57,4 @@ class BasePage:
         element = self.wait_for_element(locator)
         return element.get_attribute("value")
 
-    def select_option_by_value(self, locator, value):
-        element = self.wait_for_element(locator)
-        select = Select(element)
-        select.select_by_value(value)
+

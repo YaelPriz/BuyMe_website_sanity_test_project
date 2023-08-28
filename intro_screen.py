@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.relative_locator import locate_with
 from base_page import BasePage
 import allure
 
@@ -11,7 +12,8 @@ class IntroScreen(BasePage):
     EMAIL_INPUT = (By.CSS_SELECTOR, 'input[type="email"]')
     PASSWORD_INPUT = (By.ID, 'valPass')
     REENTER_PASSWORD_INPUT = (By.CSS_SELECTOR, 'input[data-parsley-equalto="#valPass"]')
-    SUBSCRIBE_BUTTON = (By.CSS_SELECTOR, 'button[type="submittt"]')
+    SUBSCRIBE_BUTTON = (By.CSS_SELECTOR, 'button[type="submit"]')
+    TERMS_TEXT = (By.CSS_SELECTOR, 'a:contains("ולתנאי השימוש")')
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -51,3 +53,20 @@ class IntroScreen(BasePage):
     @allure.step("Step 9: Assert first name field")
     def get_name_value(self):
         return self.get_value(self.NAME_INPUT)
+
+    @allure.step("Step 10: Agree to terms and conditions")
+    def fill_agree(self):
+        check_elements = self.driver.find_elements(By.CSS_SELECTOR, '.fill')
+        # Select the first element from the list
+        if check_elements:
+            first_check_element = check_elements[0]
+            # Click the circle element to toggle its state
+            first_check_element.click()
+        else:
+            self.element_not_found_screenshot()
+        # # Find the element to the left of the circle element (checkbox)
+        # left_element = self.driver.find_element(self.TERMS_TEXT)
+        # # Find the circle element (checkbox)
+        # circle_element = self.driver.find_element(locate_with(By.CSS_SELECTOR, '.check').toRightOf(left_element))
+        # # Click the circle element to toggle its state
+        # circle_element.click()

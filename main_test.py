@@ -3,6 +3,8 @@ from intro_screen import IntroScreen
 from home_screen import HomeScreen
 from constants import Constants
 import logging
+from base_page import BasePage
+import time
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -15,9 +17,9 @@ logging.basicConfig(
                     level=logging.ERROR)  # determine the minimum message level it will accept
 
 
-class TestIntroScreen(TestCase):
+class TestClass(TestCase):
     def test_intro_screen(self):
-        intro = IntroScreen(driver=None)  # Create an instance of IntroScreen
+        intro = IntroScreen(BasePage.driver)  # Create an instance of IntroScreen
         intro.enter_website()
         intro.click_enter_subscribe()
         intro.click_to_subscribe()
@@ -28,22 +30,27 @@ class TestIntroScreen(TestCase):
         intro.click_subscribe()
         name_value = intro.get_name_value()
         assert name_value == Constants.USERNAME
+        intro.fill_agree()
 
-
-class TestHomeScreen(TestCase):
     def test_home_screen(self):
-        home = HomeScreen(driver=None)  # Create an instance of HomeScreen
-        home.pick_price_point(Constants.PRICE_POINT)
-        home.pick_region(Constants.REGION)
-        home.pick_category(Constants.CATEGORY)
+        intro = IntroScreen(BasePage.driver)  # Create an instance of IntroScreen
+        intro.enter_website()
+        intro.click_enter_subscribe()
+        home = HomeScreen(BasePage.driver)  # Create an instance of HomeScreen
+        time.sleep(2) # Wait for 2 seconds
+        home.login(Constants.MAIL, Constants.PASS)
+        time.sleep(20) # Wait for 2 seconds
+        home.pick_price_point()
+        time.sleep(0.5) # Wait for 0.5 seconds
+        home.pick_region()
+        time.sleep(0.5) # Wait for 0.5 seconds
+        home.pick_category()
         home.click_find_present()
 
+    def tearDown(self):
+        self.driver.quit()
 
-# rm -rf allure-report
-# pytest --alluredir=allure-report
+    # rm -rf allure-report
+    # pytest --alluredir=allure-report
     # allure generate allure-report
     # allure serve allure-report
-
-
-    # def tearDown(self):
-    #     self.driver.quit()
