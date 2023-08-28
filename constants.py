@@ -4,4 +4,5 @@ class Constants:
     PASSWORD = "Password123456"
     MAIL = "user12345@gmail.com"
     PASS = "Pass12345"
+    PRICE = "99"
 

@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.relative_locator import locate_with
 from base_page import BasePage
 import allure
 
@@ -64,9 +63,3 @@ class IntroScreen(BasePage):
             first_check_element.click()
         else:
             self.element_not_found_screenshot()
-        # # Find the element to the left of the circle element (checkbox)
-        # left_element = self.driver.find_element(self.TERMS_TEXT)
-        # # Find the circle element (checkbox)
-        # circle_element = self.driver.find_element(locate_with(By.CSS_SELECTOR, '.check').toRightOf(left_element))
-        # # Click the circle element to toggle its state
-        # circle_element.click()

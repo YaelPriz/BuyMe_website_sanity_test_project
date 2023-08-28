@@ -1,6 +1,7 @@
 from unittest import TestCase
 from intro_screen import IntroScreen
 from home_screen import HomeScreen
+from pick_business_screen import PickBusinessScreen
 from constants import Constants
 import logging
 from base_page import BasePage
@@ -33,10 +34,13 @@ class TestClass(TestCase):
         intro.fill_agree()
 
     def test_home_screen(self):
-        intro = IntroScreen(BasePage.driver)  # Create an instance of IntroScreen
+        # Create an instance of IntroScreen
+        intro = IntroScreen(BasePage.driver)
         intro.enter_website()
         intro.click_enter_subscribe()
-        home = HomeScreen(BasePage.driver)  # Create an instance of HomeScreen
+
+        # Create an instance of HomeScreen
+        home = HomeScreen(BasePage.driver)
         time.sleep(2) # Wait for 2 seconds
         home.login(Constants.MAIL, Constants.PASS)
         time.sleep(20) # Wait for 2 seconds
@@ -47,9 +51,20 @@ class TestClass(TestCase):
         home.pick_category()
         home.click_find_present()
 
-    def tearDown(self):
-        self.driver.quit()
+        # Create an instance of PickBusinessScreen
+        pick = PickBusinessScreen(BasePage.driver)
+        time.sleep(2) # Wait for 2 seconds
+        pick.assert_url()
+        pick.pick_business()
+        time.sleep(2) # Wait for 2 seconds
+        pick.enter_price(Constants.PRICE)
+        time.sleep(2) # Wait for 2 seconds
+        pick.click_select()
 
+    def tearDown(self):
+        BasePage.driver.quit()
+
+    # Create allure report from terminal:
     # rm -rf allure-report
     # pytest --alluredir=allure-report
     # allure generate allure-report

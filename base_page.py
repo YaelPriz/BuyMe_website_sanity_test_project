@@ -3,7 +3,6 @@ from selenium.webdriver.support import expected_conditions
 import allure
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from allure_commons.types import AttachmentType
-from selenium.webdriver.support.ui import Select
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
