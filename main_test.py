@@ -2,6 +2,7 @@ from unittest import TestCase
 from intro_screen import IntroScreen
 from home_screen import HomeScreen
 from pick_business_screen import PickBusinessScreen
+from sender_receiver_screen import SenderReceiverScreen
 from constants import Constants
 import logging
 from base_page import BasePage
@@ -19,8 +20,9 @@ logging.basicConfig(
 
 
 class TestClass(TestCase):
-    def test_intro_screen(self):
-        intro = IntroScreen(BasePage.driver)  # Create an instance of IntroScreen
+    def test_sanity(self):
+        # Create an instance of IntroScreen
+        intro = IntroScreen(BasePage.driver)
         intro.enter_website()
         intro.click_enter_subscribe()
         intro.click_to_subscribe()
@@ -32,12 +34,7 @@ class TestClass(TestCase):
         name_value = intro.get_name_value()
         assert name_value == Constants.USERNAME
         intro.fill_agree()
-
-    def test_home_screen(self):
-        # Create an instance of IntroScreen
-        intro = IntroScreen(BasePage.driver)
-        intro.enter_website()
-        intro.click_enter_subscribe()
+        intro.click_subscribe()
 
         # Create an instance of HomeScreen
         home = HomeScreen(BasePage.driver)
@@ -60,6 +57,15 @@ class TestClass(TestCase):
         pick.enter_price(Constants.PRICE)
         time.sleep(2) # Wait for 2 seconds
         pick.click_select()
+
+        # Create an instance of SenderReceiverScreen
+        purchase = SenderReceiverScreen(BasePage.driver)
+        time.sleep(2) # Wait for 2 seconds
+        purchase.pick_business()
+        purchase.enter_receiver(Constants.RECEIVER)
+        purchase.pick_event()
+        purchase.enter_blessing(Constants.BLESSING)
+        purchase.click_continue()
 
     def tearDown(self):
         BasePage.driver.quit()

@@ -5,4 +5,6 @@ class Constants:
     MAIL = "user12345@gmail.com"
     PASS = "Pass12345"
     PRICE = "99"
+    RECEIVER = "Daniel"
+    BLESSING = "MAZAL TOV"
 
