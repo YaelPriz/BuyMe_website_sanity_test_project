@@ -39,8 +39,6 @@ class TestClass(TestCase):
         # Create an instance of HomeScreen
         home = HomeScreen(BasePage.driver)
         time.sleep(2) # Wait for 2 seconds
-        home.login(Constants.MAIL, Constants.PASS)
-        time.sleep(20) # Wait for 2 seconds
         home.pick_price_point()
         time.sleep(0.5) # Wait for 0.5 seconds
         home.pick_region()
@@ -53,7 +51,7 @@ class TestClass(TestCase):
         time.sleep(2) # Wait for 2 seconds
         pick.assert_url()
         pick.pick_business()
-        time.sleep(2) # Wait for 2 seconds
+        time.sleep(3) # Wait for 2 seconds
         pick.enter_price(Constants.PRICE)
         time.sleep(2) # Wait for 2 seconds
         pick.click_select()
@@ -62,10 +60,19 @@ class TestClass(TestCase):
         purchase = SenderReceiverScreen(BasePage.driver)
         time.sleep(2) # Wait for 2 seconds
         purchase.pick_business()
+        time.sleep(5) # Wait for 5 seconds
         purchase.enter_receiver(Constants.RECEIVER)
         purchase.pick_event()
         purchase.enter_blessing(Constants.BLESSING)
         purchase.click_continue()
+        time.sleep(2) # Wait for 2 seconds
+        purchase.select_now()
+        purchase.pick_sms()
+        time.sleep(2) # Wait for 2 seconds
+        purchase.enter_phone_number(Constants.PHONE)
+        purchase.enter_sender(Constants.SENDER)
+        purchase.click_back()
+        purchase.assert_receiver()
 
     def tearDown(self):
         BasePage.driver.quit()

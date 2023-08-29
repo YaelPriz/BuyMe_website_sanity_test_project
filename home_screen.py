@@ -25,27 +25,27 @@ class HomeScreen(BasePage):
         self.enter_text(self.PASSWORD_INPUT, password)
         self.click_element(self.ENTER_BUTTON)
 
-    @allure.step("Step 1: Pick price point")
+    @allure.step("Pick price point")
     def pick_price_point(self):
         # Click to open the price dropdown
         self.click_element(self.PRICE_COMBOBOX)
         # click to select the specific option in the dropdown by its value
         self.click_element(self.PRICE_POINT)
 
-    @allure.step("Step 2: Pick region")
+    @allure.step("Pick region")
     def pick_region(self):
         # Click to open the region dropdown
         self.click_element(self.REGION_COMBOBOX)
         # click to select the specific option in the dropdown by its value
         self.click_element(self.REGION)
 
-    @allure.step("Step 3: Pick category")
+    @allure.step("Pick category")
     def pick_category(self):
         # Click to open the category dropdown
         self.click_element(self.CATEGORY_COMBOBOX)
         # click to select the specific option in the dropdown by its value
         self.click_element(self.CATEGORY)
 
-    @allure.step("Step 4: Click Find Me a Present")
+    @allure.step("Click Find Me a Present")
     def click_find_present(self):
         self.click_element(self.FIND_PRESENT_BUTTON)

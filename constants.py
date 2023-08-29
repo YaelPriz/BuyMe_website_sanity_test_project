@@ -1,10 +1,11 @@
 class Constants:
-    USERNAME = "username123456"
-    EMAIL = "email123456@gmail.com"
-    PASSWORD = "Password123456"
+    USERNAME = "username1234567"
+    EMAIL = "email1234567@gmail.com"
+    PASSWORD = "Password1234567"
     MAIL = "user12345@gmail.com"
     PASS = "Pass12345"
     PRICE = "99"
     RECEIVER = "Daniel"
     BLESSING = "MAZAL TOV"
-
+    PHONE = "0500000000"
+    SENDER = "Yael"

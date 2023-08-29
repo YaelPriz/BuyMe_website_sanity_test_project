@@ -17,43 +17,43 @@ class IntroScreen(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    @allure.step("Step 1: Enter website")
+    @allure.step("Enter website")
     def enter_website(self):
         self.driver.get(self.url)
 
-    @allure.step("Step 2: Click Enter / Subscribe")
+    @allure.step("Click Enter / Subscribe")
     def click_enter_subscribe(self):
         self.click_element(self.ENTER_SUBSCRIBE_BUTTON)
 
-    @allure.step("Step 3: Click to Subscribe link")
+    @allure.step("Click to Subscribe link")
     def click_to_subscribe(self):
         self.click_element(self.TO_SUBSCRIBE_LINK)
 
-    @allure.step("Step 4: Enter first name")
+    @allure.step("Enter first name")
     def enter_name(self, username):
         self.enter_text(self.NAME_INPUT, username)
 
-    @allure.step("Step 5: Enter valid email address")
+    @allure.step("Enter valid email address")
     def enter_email(self, email):
         self.enter_text(self.EMAIL_INPUT, email)
 
-    @allure.step("Step 6: Enter password")
+    @allure.step("Enter password")
     def enter_password(self, password):
         self.enter_text(self.PASSWORD_INPUT, password)
 
-    @allure.step("Step 7: RE-Enter password")
+    @allure.step("RE-Enter password")
     def reenter_password(self, password):
         self.enter_text(self.REENTER_PASSWORD_INPUT, password)
 
-    @allure.step("Step 8: Click subscribe")
+    @allure.step("Click subscribe")
     def click_subscribe(self):
         self.click_element(self.SUBSCRIBE_BUTTON)
 
-    @allure.step("Step 9: Assert first name field")
+    @allure.step("Assert first name field")
     def get_name_value(self):
         return self.get_value(self.NAME_INPUT)
 
-    @allure.step("Step 10: Agree to terms and conditions")
+    @allure.step("Agree to terms and conditions")
     def fill_agree(self):
         check_elements = self.driver.find_elements(By.CSS_SELECTOR, '.fill')
         # Select the first element from the list

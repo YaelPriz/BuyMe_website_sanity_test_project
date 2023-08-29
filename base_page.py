@@ -52,7 +52,7 @@ class BasePage:
         element = self.wait_for_element(locator)
         element.send_keys(text)
 
-    def get_value(self,locator):
+    def get_value(self, locator):
         element = self.wait_for_element(locator)
         return element.get_attribute("value")
 
